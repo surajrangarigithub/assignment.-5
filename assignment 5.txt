@@ -1,0 +1,177 @@
+Assignment 1:
+public class ArrayConversion {
+    public static void main(String[] args) {
+        int[] oneDArray = {1,2,3,4};
+        int rows = 2;
+        int cols = 2;
+        int[][] twoDArray = convertTo2DArray(oneDArray, rows, cols);
+
+        // Display the 2D array
+        for (int i = 0; i < rows; i++) {
+            System.out.print("[");
+                     for (int j = 0; j < cols; j++) {
+                System.out.print(twoDArray[i][j] + " ");
+                if (j != cols - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+            System.out.println();
+        }
+    }
+
+    public static int[][] convertTo2DArray(int[] oneDArray, int rows, int cols) {
+       
+
+        int[][] twoDArray = new int[rows][cols];
+        int index = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                twoDArray[i][j] = oneDArray[index];
+                index++;
+            }
+        }
+
+        return twoDArray;
+    }
+}
+
+
+
+Assignment 2:
+public class ArraingingCoins {
+
+        public static int arrangeCoins(int n) {
+          long left = 0, right = n;
+          long k, curr;
+          while (left <= right) {
+            k = left + (right - left) / 2;
+            curr = k * (k + 1) / 2;
+      
+            if (curr == n) return (int)k;
+      
+            if (n < curr) {
+              right = k - 1;
+            } else {
+              left = k + 1;
+            }
+          }
+          return (int)right;
+        }
+        public static void main (String[]args){
+            int n=5;
+            arrangeCoins(n);
+            System.out.print(arrangeCoins(n));
+        }
+      }
+    
+
+Assignment 3:
+import java.util.Arrays;
+
+public class SquareArray {
+
+        public static int[] sortedSquares(int[] nums) {
+            int left=0, right=nums.length-1;
+
+            int ans[]= new int[nums.length];
+            
+            int k=nums.length-1;
+            while(left<=right){
+                int max=(Math.abs(nums[left])<Math.abs(nums[right])? nums[right]: nums[left]);
+                if(max==nums[right])
+                    right--;
+                    else 
+                        left++;
+                ans[k]=max*max;
+                k--;
+            }
+            return ans;
+        }
+    
+    
+        
+        public static void main(String[]args){
+           int[] nums = {-4,-1,0,3,10};
+           sortedSquares(nums);
+           
+           System.out.println(Arrays.toString(sortedSquares(nums)));
+
+
+        }
+    }
+    
+
+Assignment 5:
+import java.util.*;
+public class distanve {
+    
+   
+        public static int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+            int count=0;
+            int x=0;
+            for(int i=0;i<arr1.length;i++){
+                x=0;
+                for(int j=0;j<arr2.length;j++){
+                    int diff=Math.abs(arr1[i]-arr2[j]);
+                    if(diff<=d){
+                        j=arr2.length;
+                    }
+                    else{
+                        x++;
+                    }
+                }
+                if(x==arr2.length){
+                    count++;
+                }
+            }
+            return count;
+        }
+        public static void main(String[]args){
+           int[] arr1 = {4,5,8};
+           int[] arr2 = {10,9,1,8};
+           int d=2;
+           findTheDistanceValue(arr1, arr2, 2);
+           System.out.println(findTheDistanceValue(arr1,arr2,d));
+        }
+    }
+
+
+
+Assignment 6:
+import java.util.*;
+
+
+public class duplicate {
+    
+        public static List<Integer> findDuplicates(int[] nums) {
+            ArrayList<Integer> al=new ArrayList<>();
+             HashMap<Integer,Integer> map=new HashMap<>();
+             if(nums.length==1){
+                 return al;
+             }
+             for(int i=0;i<nums.length;i++) {
+                 map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+             }
+             for(int i:map.keySet()) {
+                 if(map.get(i)>1) {
+                     al.add(i);
+                 }
+             }
+             Collections.sort(al);
+             return al;
+             
+        }
+        public static void main(String[] args) {
+           int[] nums = {4,3,2,7,8,2,3,1};
+           findDuplicates(nums);
+
+
+           
+           
+            System.out.println(findDuplicates(nums)); 
+        }
+    }
+    
+
